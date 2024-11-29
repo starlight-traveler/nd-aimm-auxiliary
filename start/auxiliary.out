@@ -1,0 +1,25 @@
+nohup: ignoring input
+2024-11-29 12:26:33 - AuxiliaryLogger - INFO - =========================
+2024-11-29 12:26:33 - AuxiliaryLogger - INFO - Application started.
+2024-11-29 12:26:33 - AuxiliaryLogger - DEBUG - Initializing SensorManager.
+Traceback (most recent call last):
+  File "/home/ryan-paillet/.pyenv/versions/3.10.2/lib/python3.10/site-packages/serial/serialposix.py", line 322, in open
+    self.fd = os.open(self.portstr, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
+FileNotFoundError: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/local/ndaimm/nd-aimm/nd-aimm-auxiliary/main.py", line 48, in <module>
+    main()
+  File "/local/ndaimm/nd-aimm/nd-aimm-auxiliary/main.py", line 33, in main
+    manager = SensorManager(uart_port, uart_baudrate, ethernet_ip, ethernet_port)
+  File "/local/ndaimm/nd-aimm/nd-aimm-auxiliary/sensor_manager.py", line 10, in __init__
+    self.uart_comm = UARTCommunication(uart_port, uart_baudrate)
+  File "/local/ndaimm/nd-aimm/nd-aimm-auxiliary/uart_communication.py", line 9, in __init__
+    self.ser = serial.Serial(port, baudrate, timeout=1)
+  File "/home/ryan-paillet/.pyenv/versions/3.10.2/lib/python3.10/site-packages/serial/serialutil.py", line 244, in __init__
+    self.open()
+  File "/home/ryan-paillet/.pyenv/versions/3.10.2/lib/python3.10/site-packages/serial/serialposix.py", line 325, in open
+    raise SerialException(msg.errno, "could not open port {}: {}".format(self._port, msg))
+serial.serialutil.SerialException: [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'

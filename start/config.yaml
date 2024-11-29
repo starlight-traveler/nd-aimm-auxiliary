@@ -1,0 +1,32 @@
+# config.yaml
+interconnect:
+  port: '/dev/ttyUSB0'      # Serial port to connect to Teensy
+  baudrate: 57600           # Baud rate for serial communication
+
+ethernet:
+  ip: "192.168.1.100"       # Ethernet server IP
+  port: 8000                # Ethernet server port
+
+logging:
+  version: 1
+  disable_existing_loggers: False
+  formatters:
+    standard:
+      format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+      datefmt: '%Y-%m-%d %H:%M:%S'
+  handlers:
+    console:
+      class: logging.StreamHandler
+      level: DEBUG
+      formatter: standard
+      stream: ext://sys.stdout
+    file:
+      class: logging.FileHandler
+      level: DEBUG
+      formatter: standard
+      filename: "start/drone.log"
+  loggers:
+    AuxiliaryLogger:
+      level: DEBUG
+      handlers: [console, file]
+      propagate: no
